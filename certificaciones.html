@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificaciones - Portfolio Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+    <style>
+        /* Section Styles */
+        .certifications {
+            padding: 120px 20px 60px;
+            min-height: 100vh;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--fg);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            color: var(--accent);
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--accent-soft);
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* Grid Layout */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            padding: 0 5vw;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Card Styles */
+        .cert-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-soft);
+            border-color: var(--accent);
+        }
+
+        .cert-image {
+            width: 100%;
+            height: 220px;
+            /* Modern Tech Grid Background */
+            background-color: #f0f4f8;
+            background-image: 
+                linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at center, #ffffff 0%, rgba(240, 244, 248, 0.5) 100%);
+            background-size: 20px 20px, 20px 20px, 100% 100%;
+            background-position: center center;
+            
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.02);
+        }
+
+        /* Shine Effect */
+        .cert-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.8),
+                transparent
+            );
+            transform: skewX(-15deg);
+            transition: 0s;
+            pointer-events: none;
+        }
+
+        .cert-card:hover .cert-image::after {
+            left: 100%;
+            transition: 0.8s ease-in-out;
+        }
+
+        /* Vignette for depth */
+        .cert-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.03) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .cert-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .cert-card:hover .cert-image img {
+            transform: scale(1.05);
+        }
+
+        .cert-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-issuer {
+            color: var(--accent);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-title {
+            font-size: 1.25rem;
+            color: var(--fg);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .cert-description {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        /* Actions */
+        .cert-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .btn-cert {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-cert-primary {
+            background: var(--accent);
+            color: var(--bg);
+            border: 1px solid var(--accent);
+        }
+
+        .btn-cert-primary:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        .btn-cert-secondary {
+            background: transparent;
+            color: var(--fg);
+            border: 1px solid var(--border);
+        }
+
+        .btn-cert-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* Collapsible List */
+        .cert-list {
+            list-style: none;
+            padding: 0;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+            margin-top: 1rem;
+            border: 1px solid var(--border);
+        }
+
+        .cert-list.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cert-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .cert-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .cert-list li i {
+            color: var(--accent);
+            margin-top: 3px;
+        }
+
+        /* Navigation */
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            padding: 10px 20px;
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--fg);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .top-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--bg-soft);
+            padding: 5px 15px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .lang-switch button {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .lang-switch button:hover {
+            color: var(--accent);
+        }
+
+        #themeSelect {
+            background: transparent;
+            border: none;
+            color: var(--fg);
+            cursor: pointer;
+            font-family: var(--font-main);
+            outline: none;
+        }
+    </style>
+</head>
+<body class="theme-hybrid">
+
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> <span data-i18n="nav.back">Volver</span>
+    </a>
+
+    <div class="top-controls">
+        <div class="lang-switch">
+            <button onclick="setLanguage('es')" data-lang="es">ES</button>
+            <button onclick="setLanguage('en')" data-lang="en">EN</button>
+        </div>
+        <div style="width: 1px; height: 20px; background: var(--border);"></div>
+        <select id="themeSelect">
+            <option value="theme-hybrid">Híbrido</option>
+            <option value="theme-minimal">Minimal</option>
+            <option value="theme-dark">Dark</option>
+            <option value="theme-neon">Neon</option>
+            <option value="theme-3d">3D</option>
+        </select>
+    </div>
+
+    <section id="certifications" class="certifications">
+        <div class="section-header">
+            <h2 class="section-title" data-i18n="cert-title">Certificaciones</h2>
+            <br>
+            <p class="section-subtitle" data-i18n="cert-subtitle">Cursos y acreditaciones verificables</p>
+        </div>
+
+        <div class="cert-grid">
+            <!-- MINTIC -->
+            <div class="cert-card">
+                <div class="cert-image">
+                    <img src="img/Certificado IU Training - CC 1088310493_page-0001.jpg" alt="Fundamentos de Programación" loading="lazy">
+                </div>
+                <div class="cert-content">
+                    <div class="cert-issuer">MINTIC / IU Digital</div>
+                    <h3 class="cert-title" data-i18n="cert.mintic.title">Programación – Nivel Intermedio (Bootcamp)</h3>
+                    <p class="cert-description" data-i18n="cert.mintic.desc">
+                        Bootcamp intensivo de 159 horas orientado al fortalecimiento de habilidades de programación, lógica de software y desarrollo de soluciones tecnológicas.
+                    </p>
+                    <div class="cert-actions">
+                        <button class="btn-cert btn-cert-secondary btn-details" data-i18n="cert.btn.details">Detalles</button>
+                    </div>
+                    <ul class="cert-list">
+                        <li data-i18n="cert.mintic.item1"><i class="fas fa-check-circle"></i> Programación estructurada y modular</li>
+                        <li data-i18n="cert.mintic.item2"><i class="fas fa-check-circle"></i> Estructuras de datos y algoritmos</li>
+                        <li data-i18n="cert.mintic.item3"><i class="fas fa-check-circle"></i> Control de versiones y buenas prácticas</li>
+                        <li data-i18n="cert.mintic.item4"><i class="fas fa-check-circle"></i> Retos y proyectos integradores</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- IBM Prompt Engineering -->
+            <div class="cert-card">
+                <div class="cert-image">
+                    <img src="img/IBM PROMTS.jpg" alt="IBM Prompt Engineering" loading="lazy">
+                </div>
+                <div class="cert-content">
+                    <div class="cert-issuer">IBM</div>
+                    <h3 class="cert-title" data-i18n="cert.ibm.prompt.title">Prompt Engineering Basics</h3>
+                    <p class="cert-description" data-i18n="cert.ibm.prompt.desc">
+                        Formación en fundamentos de prompt engineering para IA generativa, enfocada en optimizar la calidad y precisión de respuestas.
+                    </p>
+                    <div class="cert-actions">
+                        
+                        <button class="btn-cert btn-cert-secondary btn-details" data-i18n="cert.btn.details">Detalles</button>
+                    </div>
+                    <ul class="cert-list">
+                        <li data-i18n="cert.ibm.prompt.item1"><i class="fas fa-check-circle"></i> Diseño de prompts contextuales</li>
+                        <li data-i18n="cert.ibm.prompt.item2"><i class="fas fa-check-circle"></i> Técnicas de Few-Shot y Chain-of-Thought</li>
+                        <li data-i18n="cert.ibm.prompt.item3"><i class="fas fa-check-circle"></i> Evaluación de salidas de IA</li>
+                        <li data-i18n="cert.ibm.prompt.item4"><i class="fas fa-check-circle"></i> Ética y seguridad en IA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- IBM Interpersonal Skills -->
+            <div class="cert-card">
+                <div class="cert-image">
+                    <img src="img/IBM DEVELOPEN.jpg" alt="IBM Interpersonal Skills" loading="lazy">
+                </div>
+                <div class="cert-content">
+                    <div class="cert-issuer">IBM</div>
+                    <h3 class="cert-title" data-i18n="cert.ibm.inter.title">Developing Interpersonal Skills</h3>
+                    <p class="cert-description" data-i18n="cert.ibm.inter.desc">
+                        Fortalecimiento de habilidades blandas clave: comunicación efectiva, trabajo en equipo y colaboración en entornos tecnológicos.
+                    </p>
+                    <div class="cert-actions">
+                        
+                        <button class="btn-cert btn-cert-secondary btn-details" data-i18n="cert.btn.details">Detalles</button>
+                    </div>
+                    <ul class="cert-list">
+                        <li data-i18n="cert.ibm.inter.item1"><i class="fas fa-check-circle"></i> Comunicación oral y escrita</li>
+                        <li data-i18n="cert.ibm.inter.item2"><i class="fas fa-check-circle"></i> Escucha activa y feedback</li>
+                        <li data-i18n="cert.ibm.inter.item3"><i class="fas fa-check-circle"></i> Trabajo en equipo interdisciplinario</li>
+                        <li data-i18n="cert.ibm.inter.item4"><i class="fas fa-check-circle"></i> Gestión de conflictos</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Platzi: Algoritmos -->
+            <div class="cert-card">
+                <div class="cert-image">
+                    <img src="img/ALGORITMO Y DIAGRAMAS DE FLUJO_page-0001.jpg" alt="Algoritmos" loading="lazy">
+                </div>
+                <div class="cert-content">
+                    <div class="cert-issuer">Platzi</div>
+                    <h3 class="cert-title" data-i18n="cert.platzi.algo.title">Algoritmos y Diagramas de Flujo</h3>
+                    <p class="cert-description" data-i18n="cert.platzi.algo.desc">
+                        Curso fundamental para entender la lógica de programación mediante diagramas de flujo y algoritmos básicos.
+                    </p>
+                    <div class="cert-actions">
+                        
+                        <button class="btn-cert btn-cert-secondary btn-details" data-i18n="cert.btn.details">Detalles</button>
+                    </div>
+                    <ul class="cert-list">
+                        <li data-i18n="cert.platzi.algo.item1"><i class="fas fa-check-circle"></i> Diseño de algoritmos</li>
+                        <li data-i18n="cert.platzi.algo.item2"><i class="fas fa-check-circle"></i> Diagramas de flujo</li>
+                        <li data-i18n="cert.platzi.algo.item3"><i class="fas fa-check-circle"></i> Pensamiento lógico estructurado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Platzi: Computación Básica -->
+            <div class="cert-card">
+                <div class="cert-image">
+                    <img src="img/COMPUTACION BASICA_page-0001.jpg" alt="Computación Básica" loading="lazy">
+                </div>
+                <div class="cert-content">
+                    <div class="cert-issuer">Platzi</div>
+                    <h3 class="cert-title" data-i18n="cert.platzi.basic.title">Computación Básica</h3>
+                    <p class="cert-description" data-i18n="cert.platzi.basic.desc">
+                        Fundamentos esenciales de la informática, componentes de hardware, software y sistemas operativos modernos.
+                    </p>
+                    <div class="cert-actions">
+                        
+                        <button class="btn-cert btn-cert-secondary btn-details" data-i18n="cert.btn.details">Detalles</button>
+                    </div>
+                    <ul class="cert-list">
+                        <li data-i18n="cert.platzi.basic.item1"><i class="fas fa-check-circle"></i> Historia de la computación</li>
+                        <li data-i18n="cert.platzi.basic.item2"><i class="fas fa-check-circle"></i> Arquitectura de computadoras</li>
+                        <li data-i18n="cert.platzi.basic.item3"><i class="fas fa-check-circle"></i> Sistemas operativos (Windows/Linux)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Platzi: Funciones -->
+            <div class="cert-card">
+                <div class="cert-image">
+                    <img src="img/FUNCIONES Y ESTRUCTURAS DE CONTROL_page-0001.jpg" alt="Funciones">
+                </div>
+                <div class="cert-content">
+                    <div class="cert-issuer">Platzi</div>
+                    <h3 class="cert-title" data-i18n="cert.platzi.func.title">Funciones y Estructuras de Control</h3>
+                    <p class="cert-description" data-i18n="cert.platzi.func.desc">
+                        Dominio de las estructuras de control de flujo y uso eficiente de funciones para código modular.
+                    </p>
+                    <div class="cert-actions">
+                        
+                        <button class="btn-cert btn-cert-secondary btn-details" data-i18n="cert.btn.details">Detalles</button>
+                    </div>
+                    <ul class="cert-list">
+                        <li data-i18n="cert.platzi.func.item1"><i class="fas fa-check-circle"></i> Condicionales y bucles</li>
+                        <li data-i18n="cert.platzi.func.item2"><i class="fas fa-check-circle"></i> Declaración de funciones</li>
+                        <li data-i18n="cert.platzi.func.item3"><i class="fas fa-check-circle"></i> Scope y alcance de variables</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Platzi: Lógica -->
+            <div class="cert-card">
+                <div class="cert-image">
+                    <img src="img/LENGUAJES DE PROGRAMACION_page-0001.jpg" alt="Lógica">
+                </div>
+                <div class="cert-content">
+                    <div class="cert-issuer">Platzi</div>
+                    <h3 class="cert-title" data-i18n="cert.platzi.logic.title">Lógica y Lenguajes de Programación</h3>
+                    <p class="cert-description" data-i18n="cert.platzi.logic.desc">
+                        Introducción a los paradigmas de programación, tipos de datos y fundamentos de lenguajes.
+                    </p>
+                    <div class="cert-actions">
+                        
+                        <button class="btn-cert btn-cert-secondary btn-details" data-i18n="cert.btn.details">Detalles</button>
+                    </div>
+                    <ul class="cert-list">
+                        <li data-i18n="cert.platzi.logic.item1"><i class="fas fa-check-circle"></i> Paradigmas de programación</li>
+                        <li data-i18n="cert.platzi.logic.item2"><i class="fas fa-check-circle"></i> Tipos de datos primitivos y complejos</li>
+                        <li data-i18n="cert.platzi.logic.item3"><i class="fas fa-check-circle"></i> Compiladores vs Intérpretes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SENA -->
+            <div class="cert-card">
+                <div class="cert-image">
+                    <img src="img/912400210601020252CC1088310493C_page-0001.jpg" alt="Atención a Clientes" loading="lazy">
+                </div>
+                <div class="cert-content">
+                    <div class="cert-issuer">SENA</div>
+                    <h3 class="cert-title" data-i18n="cert.sena.cust.title">Atención a Clientes</h3>
+                    <p class="cert-description" data-i18n="cert.sena.cust.desc">
+                        Desarrollo de habilidades para la atención efectiva, manejo de usuarios y calidad en el servicio.
+                    </p>
+                    <div class="cert-actions">
+                        
+                        <button class="btn-cert btn-cert-secondary btn-details" data-i18n="cert.btn.details">Detalles</button>
+                    </div>
+                    <ul class="cert-list">
+                        <li data-i18n="cert.sena.cust.item1"><i class="fas fa-check-circle"></i> Comunicación asertiva</li>
+                        <li data-i18n="cert.sena.cust.item2"><i class="fas fa-check-circle"></i> Manejo de PQRS</li>
+                        <li data-i18n="cert.sena.cust.item3"><i class="fas fa-check-circle"></i> Protocolos de servicio</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="js/i18n.js"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Logic for "Detalles" button
+            const detailButtons = document.querySelectorAll('.btn-details');
+            
+            detailButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // Find the closest card content wrapper
+                    const cardContent = btn.closest('.cert-content');
+                    const list = cardContent.querySelector('.cert-list');
+                    
+                    if (list) {
+                        list.classList.toggle('active');
+                        
+                        // Change button style when active
+                        if (list.classList.contains('active')) {
+                            btn.style.background = 'var(--accent)';
+                            btn.style.color = 'var(--bg)';
+                            // Use getTranslation if available, else fallback
+                            if (typeof getTranslation === 'function') {
+                                btn.textContent = getTranslation('cert.btn.hide');
+                            } else {
+                                btn.textContent = 'Ocultar';
+                            }
+                        } else {
+                            btn.style.background = 'transparent';
+                            btn.style.color = 'var(--fg)';
+                            if (typeof getTranslation === 'function') {
+                                btn.textContent = getTranslation('cert.btn.details');
+                            } else {
+                                btn.textContent = 'Detalles';
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
