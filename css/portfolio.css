@@ -541,15 +541,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
 }
 
 .social-row a:hover {
-    background: var(--accent);
-    color: #fff;
-    transform: translateY(-3px);
-    border-color: var(--accent);
+    background: var(--accent) !important;
+    color: #fff !important;
+    transform: translateY(-3px) scale(1.05);
+    border-color: var(--accent) !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .contact-form-new {
