@@ -73,6 +73,8 @@
     "projects.title": "Featured Projects",
     "project_sim.title": "Interactive Physics Simulator",
     "project_sim.desc": "Physics simulation suite featuring simple pendulum (RK4), inclined plane, and scientific calculator. Real-time force and energy visualization.",
+    "project_cvbuilder.title": "CVBuilder Pro",
+    "project_cvbuilder.desc": "Step-by-step professional resume builder. Management of personal info, experience, education, and skills with real-time preview.",
     "project_gamer.title": "Gamer Support Diagnostics",
     "project_gamer.desc": "Hardware diagnostics platform for gamers. Bottleneck analysis, performance monitoring, and AI technical assistant.",
     "contact.title": "Contact",

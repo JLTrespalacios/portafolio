@@ -73,6 +73,8 @@
     "projects.title": "Proyectos Destacados",
     "project_sim.title": "Simulador de Física Interactiva",
     "project_sim.desc": "Suite de simulación física con péndulo simple (RK4), plano inclinado y calculadora científica. Visualización de fuerzas y energía en tiempo real.",
+    "project_cvbuilder.title": "CVBuilder Pro",
+    "project_cvbuilder.desc": "Editor de currículums profesionales paso a paso. Gestión de información personal, experiencia, educación y habilidades con vista previa en tiempo real.",
     "project_gamer.title": "Gamer Support Diagnostics",
     "project_gamer.desc": "Plataforma de diagnóstico de hardware para gamers. Análisis de cuellos de botella, monitoreo de rendimiento y asistente técnico con IA.",
     "contact.title": "Contacto",
