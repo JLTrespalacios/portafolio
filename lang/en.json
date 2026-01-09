@@ -77,6 +77,8 @@
     "project_cvbuilder.desc": "Step-by-step professional resume builder. Management of personal info, experience, education, and skills with real-time preview.",
     "project_crm.title": "CRM Lite",
     "project_crm.desc": "Client and appointment management system. Agenda control, customer history, and secure authentication for efficient administration.",
+    "project_poe.title": "POE Counter",
+    "project_poe.desc": "Java Swing desktop application with counter, keyboard shortcuts, and modern UI. Includes native Windows installer.",
     "project_gamer.title": "Gamer Support Diagnostics",
     "project_gamer.desc": "Hardware diagnostics platform for gamers. Bottleneck analysis, performance monitoring, and AI technical assistant.",
     "contact.title": "Contact",

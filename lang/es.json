@@ -77,6 +77,8 @@
     "project_cvbuilder.desc": "Editor de currículums profesionales paso a paso. Gestión de información personal, experiencia, educación y habilidades con vista previa en tiempo real.",
     "project_crm.title": "CRM Lite",
     "project_crm.desc": "Sistema de gestión de clientes y citas. Control de agenda, historial de clientes y autenticación segura para administración eficiente.",
+    "project_poe.title": "Contador POE",
+    "project_poe.desc": "Aplicación de escritorio Java Swing con contador, atajos de teclado y UI moderna. Incluye instalador nativo para Windows.",
     "project_gamer.title": "Gamer Support Diagnostics",
     "project_gamer.desc": "Plataforma de diagnóstico de hardware para gamers. Análisis de cuellos de botella, monitoreo de rendimiento y asistente técnico con IA.",
     "contact.title": "Contacto",
